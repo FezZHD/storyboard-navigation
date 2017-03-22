@@ -14,8 +14,15 @@ class InternetTableController: UITableViewController {
     
     typealias jsonList = (Int, String, String, String)
     
+    var activityIndecator:UIActivityIndicatorView?;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        activityIndecator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 20, height: 20));
+        activityIndecator?.color = UIColor.blue;
+        let barButton = UIBarButtonItem(customView: activityIndecator!)
+        self.navigation.setRightBarButton(barButton, animated: true)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -29,11 +36,11 @@ class InternetTableController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     @IBOutlet var table: UITableView!
-
-    @IBOutlet var indicator: UIActivityIndicatorView!
+    
+    @IBOutlet var navigation: UINavigationItem!
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        indicator.startAnimating();
+        activityIndecator?.startAnimating()
         DispatchQueue.global(qos: .utility).async{
             Alamofire.request("https://jsonplaceholder.typicode.com/posts", method: .get).responseString(completionHandler: {response in
             if (response.result.isSuccess)
@@ -44,7 +51,7 @@ class InternetTableController: UITableViewController {
                 
             })
             DispatchQueue.main.asyncAfter(deadline: .now() + 2){
-                self.indicator.stopAnimating();
+                self.activityIndecator?.stopAnimating();
             }
         }
     }

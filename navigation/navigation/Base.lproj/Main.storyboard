@@ -56,10 +56,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <activityIndicatorView key="tableFooterView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="kJV-oE-Zg2">
-                            <rect key="frame" x="0.0" y="98" width="375" height="20"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </activityIndicatorView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="70" id="O8r-gy-wDo">
                                 <rect key="frame" x="0.0" y="28" width="375" height="70"/>
@@ -95,9 +91,9 @@
                             <outlet property="delegate" destination="5QI-Cu-7Kh" id="RUQ-BE-Uu5"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Web" id="ypl-HN-VJD"/>
+                    <navigationItem key="navigationItem" title="Web" id="hte-JS-Hcw"/>
                     <connections>
-                        <outlet property="indicator" destination="kJV-oE-Zg2" id="5eS-cF-MVh"/>
+                        <outlet property="navigation" destination="hte-JS-Hcw" id="Mt8-WF-3Fl"/>
                         <outlet property="table" destination="X2n-cB-4C1" id="OKO-xG-R2l"/>
                     </connections>
                 </tableViewController>
