@@ -8,5 +8,5 @@ target 'navigation' do
   # Pods for navigation
   pod 'Firebase'
   pod 'Alamofire'
-
+  pod 'SwiftyJSON'
 end
