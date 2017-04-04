@@ -1,99 +1,52 @@
 //
-//  InternetTableController.swift
+//  LocalTableView.swift
 //  navigation
 //
-//  Created by Evgeni' Roslik on 21/03/2017.
+//  Created by Evgeni' Roslik on 05/04/2017.
 //  Copyright © 2017 Evgeni' Roslik. All rights reserved.
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
 
-class InternetTableController: UITableViewController {
+class LocalTableView: UITableViewController {
 
-    
-    var objectList = [JsonList]();
-    
-    var activityIndecator:UIActivityIndicatorView?;
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        activityIndecator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 20, height: 20));
-        activityIndecator?.color = UIColor.blue;
-        let barButton = UIBarButtonItem(customView: activityIndecator!)
-        self.navigation.setRightBarButton(barButton, animated: true)
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-    
-
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    @IBOutlet var table: UITableView!
-    
-    @IBOutlet var navigation: UINavigationItem!
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        activityIndecator?.startAnimating()
-        DispatchQueue.global(qos: .utility).async{
-            Alamofire.request("https://jsonplaceholder.typicode.com/posts", method: .get).responseString(completionHandler: {response in
-            if (response.result.isSuccess)
-            {
-                let resultJson = response.result.value!;
-                let json:NSData = (resultJson as NSString).data(using:String.Encoding.utf8.rawValue)! as NSData
-                let parsedJson = JSON(json);
-                for (index, currentJson)in parsedJson
-                {
-                    let object = JsonList(userId: currentJson["userId"].int!, id: currentJson["id"].int!,  title: currentJson["title"].string!, body: currentJson["body"].string!);
-                    self.objectList.append(object);
-                }
-            }
-                
-            })
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2){
-                self.table.reloadData();
-                self.activityIndecator?.stopAnimating();
-            }
-        }
-    }
-    // MARK: - Table view data source
 
+    // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return objectList.count;
+        return 0
     }
 
-
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! InternetTemplateCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
         // Configure the cell...
-        cell.id?.text = String(self.objectList[indexPath.item].id);
-        cell.title?.text = self.objectList[indexPath.item].title;
-        cell.cellText?.text = self.objectList[indexPath.item].body;
+
         return cell
     }
+    */
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated);
-        self.objectList.removeAll();
-        self.table.reloadData();
-    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
