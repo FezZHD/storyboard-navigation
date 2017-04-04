@@ -8,11 +8,12 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class InternetTableController: UITableViewController {
 
     
-    typealias jsonList = (Int, String, String, String)
+    var objectList = [JsonList]();
     
     var activityIndecator:UIActivityIndicatorView?;
     
@@ -23,7 +24,7 @@ class InternetTableController: UITableViewController {
         activityIndecator?.color = UIColor.blue;
         let barButton = UIBarButtonItem(customView: activityIndecator!)
         self.navigation.setRightBarButton(barButton, animated: true)
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -46,7 +47,13 @@ class InternetTableController: UITableViewController {
             if (response.result.isSuccess)
             {
                 let resultJson = response.result.value!;
-                print(resultJson);
+                let json:NSData = (resultJson as NSString).data(using:String.Encoding.utf8.rawValue)! as NSData
+                let parsedJson = JSON(json);
+                for (index, currentJson)in parsedJson
+                {
+                    let object = JsonList(userId: currentJson["userId"].int!, id: currentJson["id"].int!,  title: currentJson["title"].string!, body: currentJson["body"].string!);
+                    self.objectList.append(object);
+                }
             }
                 
             })
