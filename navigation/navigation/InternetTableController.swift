@@ -31,6 +31,8 @@ class InternetTableController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+    
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -58,11 +60,13 @@ class InternetTableController: UITableViewController {
                 
             })
             DispatchQueue.main.asyncAfter(deadline: .now() + 2){
+                self.table.reloadData();
                 self.activityIndecator?.stopAnimating();
             }
         }
     }
     // MARK: - Table view data source
+
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -71,18 +75,20 @@ class InternetTableController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return objectList.count;
     }
 
-    /*
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! InternetTemplateCell
 
         // Configure the cell...
-
+        cell.id?.text = String(self.objectList[indexPath.item].id);
+        cell.title?.text = self.objectList[indexPath.item].title;
+        cell.cellText?.text = self.objectList[indexPath.item].body;
         return cell
     }
-    */
+
 
     /*
     // Override to support conditional editing of the table view.
