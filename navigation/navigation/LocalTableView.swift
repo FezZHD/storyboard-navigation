@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class LocalTableView: UITableViewController {
 
+    
+    var objectList = [LocalObject]();
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,25 +31,53 @@ class LocalTableView: UITableViewController {
 
     // MARK: - Table view data source
 
+    @IBOutlet var localTable: UITableView!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated);
+        if let path = NSDataAsset(name: "jsonText"){
+            do
+            {
+                //let jsonString = String)
+                //let json:NSData = data(using:String.Encoding.utf8.rawValue)! as NSData
+                let resultJson = JSON(path.data);
+                for (index, currentJson) in resultJson {
+                    let object = LocalObject(uri: currentJson["imageUri"].string!, title: currentJson["title"].string!, shordDesc:currentJson["shortDesc"].string!, desc: currentJson["desc"].string! );
+                    objectList.append(object);
+                }
+                self.localTable.reloadData();
+            }catch let error{
+                print(error.localizedDescription, "shit");
+            }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated);
+        self.objectList.removeAll();
+        self.localTable.reloadData();
+    }
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return objectList.count;
     }
 
-    /*
+ 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LocalCell", for: indexPath) as! LocalCell;
+        cell.cellImage?.image = UIImage(named: objectList[indexPath.item].uri);
+        cell.name?.text = objectList[indexPath.item].title;
+        cell.shortDesc?.text = objectList[indexPath.item].shortDesc;
 
         // Configure the cell...
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.

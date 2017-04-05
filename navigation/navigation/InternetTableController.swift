@@ -15,14 +15,14 @@ class InternetTableController: UITableViewController {
     
     var objectList = [JsonList]();
     
-    var activityIndecator:UIActivityIndicatorView?;
+    var activityIndicator:UIActivityIndicatorView?;
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        activityIndecator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 20, height: 20));
-        activityIndecator?.color = UIColor.blue;
-        let barButton = UIBarButtonItem(customView: activityIndecator!)
+        activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 20, height: 20));
+        activityIndicator?.color = UIColor.blue;
+        let barButton = UIBarButtonItem(customView: activityIndicator!)
         self.navigation.setRightBarButton(barButton, animated: true)
         
         // Uncomment the following line to preserve selection between presentations
@@ -43,7 +43,7 @@ class InternetTableController: UITableViewController {
     @IBOutlet var navigation: UINavigationItem!
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        activityIndecator?.startAnimating()
+        activityIndicator?.startAnimating()
         DispatchQueue.global(qos: .utility).async{
             Alamofire.request("https://jsonplaceholder.typicode.com/posts", method: .get).responseString(completionHandler: {response in
             if (response.result.isSuccess)
@@ -61,7 +61,7 @@ class InternetTableController: UITableViewController {
             })
             DispatchQueue.main.asyncAfter(deadline: .now() + 2){
                 self.table.reloadData();
-                self.activityIndecator?.stopAnimating();
+                self.activityIndicator?.stopAnimating();
             }
         }
     }

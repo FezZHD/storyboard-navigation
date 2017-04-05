@@ -14,7 +14,7 @@ public class LocalCell: UITableViewCell{
     
     
     @IBOutlet weak public var name: UILabel!
-    @IBOutlet weak public  var cellImage: UIImageView!
+    @IBOutlet weak public var cellImage: UIImageView!
     @IBOutlet weak public var shortDesc: UILabel!
     
     

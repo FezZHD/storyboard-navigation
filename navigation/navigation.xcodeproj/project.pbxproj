@@ -13,6 +13,8 @@
 		6D387B231E7DDBDB00F97B0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D387B211E7DDBDB00F97B0A /* Main.storyboard */; };
 		6D387B251E7DDBDB00F97B0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D387B241E7DDBDB00F97B0A /* Assets.xcassets */; };
 		6D387B281E7DDBDB00F97B0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D387B261E7DDBDB00F97B0A /* LaunchScreen.storyboard */; };
+		6D68450B1E959A50008198A4 /* LocalObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D68450A1E959A50008198A4 /* LocalObject.swift */; };
+		6D68450D1E95B1E5008198A4 /* PushCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D68450C1E95B1E5008198A4 /* PushCellController.swift */; };
 		6D6E6C1C1E81C25B00324578 /* InternetTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6E6C1B1E81C25B00324578 /* InternetTableController.swift */; };
 		6D71AF9A1E944809002C0FFE /* InternetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D71AF991E944809002C0FFE /* InternetCell.swift */; };
 		6D71AF9C1E94518B002C0FFE /* LocalTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D71AF9B1E94518B002C0FFE /* LocalTableView.swift */; };
@@ -29,6 +31,8 @@
 		6D387B241E7DDBDB00F97B0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6D387B271E7DDBDB00F97B0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6D387B291E7DDBDB00F97B0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6D68450A1E959A50008198A4 /* LocalObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalObject.swift; sourceTree = "<group>"; };
+		6D68450C1E95B1E5008198A4 /* PushCellController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushCellController.swift; sourceTree = "<group>"; };
 		6D6E6C1B1E81C25B00324578 /* InternetTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetTableController.swift; sourceTree = "<group>"; };
 		6D71AF991E944809002C0FFE /* InternetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetCell.swift; sourceTree = "<group>"; };
 		6D71AF9B1E94518B002C0FFE /* LocalTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalTableView.swift; sourceTree = "<group>"; };
@@ -75,6 +79,7 @@
 				6DA4C05E1E93151E00D1337B /* InternetObject.swift */,
 				6D387B1F1E7DDBDB00F97B0A /* ViewController.swift */,
 				6D387B211E7DDBDB00F97B0A /* Main.storyboard */,
+				6D68450C1E95B1E5008198A4 /* PushCellController.swift */,
 				6D71AF9D1E945C9B002C0FFE /* LocalCell.swift */,
 				6D6E6C1B1E81C25B00324578 /* InternetTableController.swift */,
 				6D71AF9B1E94518B002C0FFE /* LocalTableView.swift */,
@@ -82,6 +87,7 @@
 				6D387B261E7DDBDB00F97B0A /* LaunchScreen.storyboard */,
 				6D387B291E7DDBDB00F97B0A /* Info.plist */,
 				6D71AF991E944809002C0FFE /* InternetCell.swift */,
+				6D68450A1E959A50008198A4 /* LocalObject.swift */,
 			);
 			path = navigation;
 			sourceTree = "<group>";
@@ -229,9 +235,11 @@
 				6D6E6C1C1E81C25B00324578 /* InternetTableController.swift in Sources */,
 				6D71AF9C1E94518B002C0FFE /* LocalTableView.swift in Sources */,
 				6D387B201E7DDBDB00F97B0A /* ViewController.swift in Sources */,
+				6D68450D1E95B1E5008198A4 /* PushCellController.swift in Sources */,
 				6D71AF9E1E945C9B002C0FFE /* LocalCell.swift in Sources */,
 				6D387B1E1E7DDBDB00F97B0A /* AppDelegate.swift in Sources */,
 				6DA4C05F1E93151E00D1337B /* InternetObject.swift in Sources */,
+				6D68450B1E959A50008198A4 /* LocalObject.swift in Sources */,
 				6D71AF9A1E944809002C0FFE /* InternetCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
