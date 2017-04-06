@@ -114,14 +114,21 @@ class LocalTableView: UITableViewController {
     }
     */
 
-    /*
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if (segue.identifier == "PushCell"){
+            let destVC = segue.destination as? PushCellController;
+            let index = self.localTable.indexPathForSelectedRow?.row;
+            destVC?.uri = self.objectList[index!].uri;
+            destVC?.desc = self.objectList[index!].desc;
+            destVC?.pictureName = self.objectList[index!].shortDesc;
+            destVC?.navigationTitle = self.objectList[index!].title;
+        }
+        
     }
-    */
+
 
 }

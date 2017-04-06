@@ -10,6 +10,19 @@ import UIKit
 
 class PushCellController: UIViewController {
 
+
+
+    
+    
+    @IBOutlet var navigationBar: UINavigationItem!
+    
+    public var navigationTitle:String = String();
+    public var uri:String = String();
+    public var pictureName:String = String();
+    public var desc:String = String();
+    @IBOutlet var name: UILabel!
+    @IBOutlet var longDesc: UILabel!
+    @IBOutlet var image: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,7 +34,13 @@ class PushCellController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated);
+        self.name?.text = pictureName;
+        self.longDesc?.text = desc;
+        self.image?.image = UIImage(named: uri);
+        self.navigationBar?.title = navigationTitle;
+    }
     /*
     // MARK: - Navigation
 
