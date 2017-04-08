@@ -35,6 +35,7 @@ class LocalTableView: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
+        self.hidesBottomBarWhenPushed = false;
         if let path = NSDataAsset(name: "jsonText"){
             do
             {
@@ -121,6 +122,7 @@ class LocalTableView: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "PushCell"){
             let destVC = segue.destination as? PushCellController;
+            destVC?.hidesBottomBarWhenPushed = true;
             let index = self.localTable.indexPathForSelectedRow?.row;
             destVC?.uri = self.objectList[index!].uri;
             destVC?.desc = self.objectList[index!].desc;
