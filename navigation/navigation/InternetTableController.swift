@@ -43,23 +43,26 @@ class InternetTableController: UITableViewController {
     @IBOutlet var navigation: UINavigationItem!
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+       
         activityIndicator?.startAnimating()
         DispatchQueue.global(qos: .utility).async{
+            let semaphore = DispatchSemaphore(value: 0)
             Alamofire.request("https://jsonplaceholder.typicode.com/posts", method: .get).responseString(completionHandler: {response in
-            if (response.result.isSuccess)
-            {
-                let resultJson = response.result.value!;
-                let json:NSData = (resultJson as NSString).data(using:String.Encoding.utf8.rawValue)! as NSData
-                let parsedJson = JSON(json);
-                for (index, currentJson)in parsedJson
+                if (response.result.isSuccess)
                 {
-                    let object = JsonList(userId: currentJson["userId"].int!, id: currentJson["id"].int!,  title: currentJson["title"].string!, body: currentJson["body"].string!);
-                    self.objectList.append(object);
+                    let resultJson = response.result.value!;
+                    let json:NSData = (resultJson as NSString).data(using:String.Encoding.utf8.rawValue)! as NSData
+                    let parsedJson = JSON(json);
+                    for (index, currentJson)in parsedJson
+                    {
+                        let object = JsonList(userId: currentJson["userId"].int!, id: currentJson["id"].int!,  title: currentJson["title"].string!, body: currentJson["body"].string!);
+                        self.objectList.append(object);
+                    }
                 }
-            }
-                
+                semaphore.signal();
             })
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2){
+            semaphore.wait();
+            DispatchQueue.main.async(){
                 self.table.reloadData();
                 self.activityIndicator?.stopAnimating();
             }
